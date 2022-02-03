@@ -32,16 +32,8 @@ public class MyNode {
         return id;
     }
 
-    public MyNode getNextNode () {
-        return nextNode;
-    }
-
     public void setNextNode(MyNode nextNode) {
         this.nextNode = nextNode;
-    }
-
-    public MyNode getPrevNode () {
-        return prevNode;
     }
 
     public void setPrevNode(MyNode prevNode) {

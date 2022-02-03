@@ -1,10 +1,8 @@
 package streamapi;
 
-import javax.swing.text.html.parser.Parser;
+
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class TaskStreamApi {
 
