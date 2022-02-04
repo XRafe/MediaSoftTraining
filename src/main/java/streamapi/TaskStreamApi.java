@@ -1,7 +1,10 @@
 package streamapi;
 
 
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class TaskStreamApi {
@@ -66,7 +69,7 @@ public class TaskStreamApi {
     }
 
 
-    public void addMyNode(Integer id, String name, String descriptions) {
+    public Set<MyNode> addMyNode(Integer id, String name, String descriptions) {
         myNodes.add(new MyNode(id, name, descriptions, null, null));
         for (MyNode myNode: myNodes) {
             if (myNode.getId() == id - 1) {
@@ -86,6 +89,7 @@ public class TaskStreamApi {
                 }
             }
         }
+        return myNodes;
     }
 
 
