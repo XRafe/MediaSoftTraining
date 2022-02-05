@@ -2,11 +2,13 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import streamapi.TaskStreamApi;
+
 
 public class StreamApiTest {
 
-    private TaskStreamApi taskStreamApi = new TaskStreamApi();
+    private final TaskStreamApi taskStreamApi = new TaskStreamApi();
 
     @BeforeEach
     public static void initTest() {
@@ -16,8 +18,9 @@ public class StreamApiTest {
 
     @Test
     void whenAddNodeWithoutName() {
-        Assertions.fail("Name cannot be null");
-        Assertions.fail((Throwable) taskStreamApi.addMyNode(1, null, "desc1"));
+    Assertions.assertNull(taskStreamApi.addMyNode(1, null, "desc1"),
+            "Name cannot be null");
+
     }
 
     @AfterEach
