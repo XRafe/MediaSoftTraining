@@ -1,20 +1,20 @@
 package dateapi;
 
-import java.time.*;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class DateApi {
 
     private List<Data> data = new ArrayList<>();
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         new DateApi().addData();
     }
 
-    public void addData () {
+    public void addData() {
         ZoneId defaultTime = ZoneId.of("UTC+4");
 
         ZoneId sysTime = ZoneId.systemDefault();
@@ -60,7 +60,7 @@ public class DateApi {
 
         LocalDateTime t2 = LocalDateTime.now().minusHours(hour).minusMinutes(minute);
 
-        for (Data d: data) {
+        for (Data d : data) {
             if (d.getDateCreate().isAfter(t1) & d.getDateCreate().isBefore(t2)) {
                 System.out.println("ID= " + d.getId() + " Data= " + d.getData() + " Date= " + d.getDateCreate());
             }

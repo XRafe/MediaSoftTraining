@@ -16,15 +16,15 @@ public class TaskStreamApi {
         new TaskStreamApi().actionWithMyNode();
     }
 
-    public void actionWithMyNode () {
-        addMyNode(0,"Car", "Lada");
+    public void actionWithMyNode() {
+        addMyNode(0, "Car", "Lada");
         addMyNode(1, "PC", "HP");
         addMyNode(2, "PC", "ASUS");
         addMyNode(3, "PC", "XIAOMI");
         addMyNode(4, "PC", "ACER");
         addMyNode(5, "Car", "KIA");
         addMyNode(6, "Car", "FIAT");
-        addMyNode(7,"Phone", "Xiaomi");
+        addMyNode(7, "Phone", "Xiaomi");
         addMyNode(8, "Phone", "ACER");
         addMyNode(9, "Phone", "ASUS");
         addMyNode(10, "PC", "MSI");
@@ -40,7 +40,7 @@ public class TaskStreamApi {
         //Кол-во Name
         Map<Object, Long> countName = myNodes.stream().collect(Collectors.groupingBy(g -> g.getName(),
                 Collectors.counting()));
-        for (Map.Entry<Object, Long> item: countName.entrySet()) {
+        for (Map.Entry<Object, Long> item : countName.entrySet()) {
             System.out.println(item.getKey() + " - " + item.getValue());
         }
 
@@ -71,18 +71,18 @@ public class TaskStreamApi {
 
     public Set<MyNode> addMyNode(Integer id, String name, String descriptions) {
         myNodes.add(new MyNode(id, name, descriptions, null, null));
-        for (MyNode myNode: myNodes) {
+        for (MyNode myNode : myNodes) {
             if (myNode.getId() == id - 1) {
-                for (MyNode tempMyNode: myNodes) {
+                for (MyNode tempMyNode : myNodes) {
                     if (tempMyNode.getId() == id) {
                         myNode.setNextNode(tempMyNode);
                     }
                 }
             }
         }
-        for (MyNode myNode: myNodes) {
+        for (MyNode myNode : myNodes) {
             if (myNode.getId() == id) {
-                for (MyNode tempMyNode: myNodes) {
+                for (MyNode tempMyNode : myNodes) {
                     if (tempMyNode.getId() == id - 1) {
                         myNode.setPrevNode(tempMyNode);
                     }

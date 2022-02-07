@@ -1,7 +1,6 @@
 package nio;
 
 
-
 public class Notebook {
 
     private Integer id;
@@ -34,7 +33,7 @@ public class Notebook {
         return price;
     }
 
-    public String toString () {
+    public String toString() {
         return "\n ID= " + getId() + " | Фирма= " + getFirmNotebook() + " | Цена= " + getPrice();
     }
 

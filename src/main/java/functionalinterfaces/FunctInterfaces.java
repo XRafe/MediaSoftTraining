@@ -4,16 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-public class FunctInterfaces
-{
-    private List <String> list = new ArrayList<>();
+public class FunctInterfaces {
+    private List<String> list = new ArrayList<>();
 
-    private List <Integer> intList = new ArrayList<>();
-
+    private List<Integer> intList = new ArrayList<>();
 
 
-    public static void main (String[] args) {
-    System.out.println(new FunctInterfaces().convert(new FunctInterfaces().addList()));
+    public static void main(String[] args) {
+        System.out.println(new FunctInterfaces().convert(new FunctInterfaces().addList()));
     }
 
     public List addList() {
@@ -31,8 +29,8 @@ public class FunctInterfaces
 
         Function<String, Integer> convertList = x -> Integer.parseInt(x);
 
-        for (int i=0; temp.stream().count() > i; i++) {
-            intList.add(convertList.apply((String)temp.get(i)));
+        for (int i = 0; temp.stream().count() > i; i++) {
+            intList.add(convertList.apply((String) temp.get(i)));
         }
 
         return intList;

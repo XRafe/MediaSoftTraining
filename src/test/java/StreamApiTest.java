@@ -17,8 +17,8 @@ public class StreamApiTest {
 
     @Test
     void whenAddNodeWithoutName() {
-    Assertions.assertNull(taskStreamApi.addMyNode(1, null, "desc1"),
-            "Name cannot be null");
+        Assertions.assertNull(taskStreamApi.addMyNode(1, null, "desc1"),
+                "Name cannot be null");
 
     }
 

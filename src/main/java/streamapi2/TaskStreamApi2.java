@@ -16,7 +16,7 @@ public class TaskStreamApi2 {
         new TaskStreamApi2().actionWithCollections();
     }
 
-    public void actionWithCollections () {
+    public void actionWithCollections() {
         set.add("email-1");
         set.add("email-2");
         set.add("email-3");
@@ -33,7 +33,7 @@ public class TaskStreamApi2 {
         System.out.println(result);
     }
 
-    public List transform(Object ... collection) {
+    public List transform(Object... collection) {
         List result = Arrays.stream(collection)
                 .map(m -> m.toString())
                 .collect(Collectors.toList());
