@@ -41,7 +41,7 @@ public class MyThread extends Thread {
     public void run() {
         System.out.println("Thread: " + Thread.currentThread().getName() + " started");
         try {
-            while (temp != 3) {
+            while (temp != 1) {
                 for (Cargo cargo : cargoService.getCargos()) {
                     for (Plane plane : planeService.getPlanes()) {
                         if (cargo.getPointACargo().equals(plane.getPointA()) &
