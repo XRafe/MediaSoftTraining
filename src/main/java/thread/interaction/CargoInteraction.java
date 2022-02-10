@@ -18,11 +18,7 @@ public class CargoInteraction {
         return cargos;
     }
 
-    public void deleteList(Integer id) {
-        for (Cargo cargo : cargos) {
-            if (cargo.getId().equals(id)) {
-                cargos.remove(id);
-            }
-        }
+    public void deleteList(Object o) {
+        cargos.remove(o);
     }
 }
