@@ -16,16 +16,16 @@ public class DateApi {
 
     public void addData() {
         ZoneId defaultTime = ZoneId.of("UTC+4");
-
         ZoneId sysTime = ZoneId.systemDefault();
 
         LocalDateTime timeDef = LocalDateTime.now(defaultTime);
-
         LocalDateTime timeSys = LocalDateTime.now(sysTime);
 
         Integer hour = timeSys.getHour() - timeDef.getHour();
-
         Integer minute = timeSys.getMinute() - timeDef.getMinute();
+
+        LocalDateTime t1 = LocalDateTime.now().minusMonths(12);
+        LocalDateTime t2 = LocalDateTime.now().minusHours(hour).minusMinutes(minute);
 
         data.add(new Data(1, "Example-1",
                 LocalDateTime.of(2021, Month.JANUARY, 16, 8, 0)));
@@ -55,10 +55,6 @@ public class DateApi {
                 LocalDateTime.of(2022, Month.JANUARY, 16, 8, 0)));
         data.add(new Data(14, "Example-14",
                 LocalDateTime.of(2022, Month.FEBRUARY, 16, 8, 0)));
-
-        LocalDateTime t1 = LocalDateTime.now().minusMonths(12);
-
-        LocalDateTime t2 = LocalDateTime.now().minusHours(hour).minusMinutes(minute);
 
         for (Data d : data) {
             if (d.getDateCreate().isAfter(t1) & d.getDateCreate().isBefore(t2)) {
