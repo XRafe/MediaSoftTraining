@@ -41,7 +41,7 @@ public class MyThread extends Thread {
     public void run() {
         System.out.println("Thread: " + Thread.currentThread().getName() + " started");
         try {
-            while (temp != 1) {
+            while (cargoService.getCargos().stream().count() > 0) {
                 for (Cargo cargo : cargoService.getCargos()) {
                     for (Plane plane : planeService.getPlanes()) {
                         if (cargo.getPointACargo().equals(plane.getPointA()) &
@@ -55,7 +55,7 @@ public class MyThread extends Thread {
                                         plane.setCargoInPlane(cargo.getId(), cargo.getTypeCargo(),
                                                 cargo.getSizeCargo(), cargo.getPointACargo(),
                                                 cargo.getPointBCargo());
-                                        //cargoService.deleteList(cargo);
+                                        cargoService.deleteList(cargo);
                                         System.out.println("Товар номер: " + cargo.getId() +
                                                 " помещен на борт: " + plane.getNamePlane());
                                     }
@@ -69,7 +69,7 @@ public class MyThread extends Thread {
                                         plane.setCargoInPlane(cargo.getId(), cargo.getTypeCargo(),
                                                 cargo.getSizeCargo(), cargo.getPointACargo(),
                                                 cargo.getPointBCargo());
-                                        //cargoService.deleteList(cargo);
+                                        cargoService.deleteList(cargo);
                                         System.out.println("Товар номер: " + cargo.getId() +
                                                 " помещен на борт: " + plane.getNamePlane());
                                     }
@@ -83,7 +83,7 @@ public class MyThread extends Thread {
                                         plane.setCargoInPlane(cargo.getId(), cargo.getTypeCargo(),
                                                 cargo.getSizeCargo(), cargo.getPointACargo(),
                                                 cargo.getPointBCargo());
-                                        //cargoService.deleteList(cargo);
+                                        cargoService.deleteList(cargo);
                                         System.out.println("Товар номер: " + cargo.getId() +
                                                 " помещен на борт: " + plane.getNamePlane());
                                     }
@@ -96,7 +96,7 @@ public class MyThread extends Thread {
                                         plane.setCargoInPlane(cargo.getId(), cargo.getTypeCargo(),
                                                 cargo.getSizeCargo(), cargo.getPointACargo(),
                                                 cargo.getPointBCargo());
-                                        //cargoService.deleteList(cargo);
+                                        cargoService.deleteList(cargo);
                                         System.out.println("Товар номер: " + cargo.getId() +
                                                 " помещен на борт: " + plane.getNamePlane());
                                     }
@@ -105,9 +105,8 @@ public class MyThread extends Thread {
                         }
                     }
                 }
-                if (temp != 1) {
+                if (cargoService.getCargos().stream().count() > 0) {
                     addNewPlain();
-                    temp++;
                 }
             }
         } catch (Exception e) {
