@@ -27,7 +27,7 @@ public class DateApi {
         new DateApi().init();
     }
 
-    public void init () {
+    public void init() {
         addData();
         outData();
     }
@@ -64,7 +64,7 @@ public class DateApi {
 
     }
 
-    public void outData () {
+    public void outData() {
         for (Data d : data) {
             if (d.getDateCreate().isAfter(t1) & d.getDateCreate().isBefore(t2)) {
                 System.out.println("ID= " + d.getId() + " Data= " + d.getData() + " Date= " + d.getDateCreate());

@@ -7,9 +7,7 @@ import thread.table.Cargo;
 import thread.table.Plane;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class MyThread extends Thread {
 
@@ -28,9 +26,9 @@ public class MyThread extends Thread {
         String[] A = new String[100];
         String[] B = new String[100];
         Integer i = 1;
-        Integer checkList =0;
+        Integer checkList = 0;
         for (Cargo cargo : cargoService.getCargos()) {
-            for (Cargo check: cargoService.queueOnDelete) {
+            for (Cargo check : cargoService.queueOnDelete) {
                 if (cargo != check) {
                     checkList++;
                     if (checkList == cargoService.queueOnDelete.stream().count()) {
@@ -122,10 +120,10 @@ public class MyThread extends Thread {
                     addNewPlain();
                 }
             }
-        while (it.hasNext()) {
-            cargoService.deleteList(it);
-            it.next();
-        }
+            while (it.hasNext()) {
+                cargoService.deleteList(it);
+                it.next();
+            }
 
         } catch (Exception e) {
             System.out.println(e);
