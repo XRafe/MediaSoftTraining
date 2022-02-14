@@ -14,6 +14,8 @@ public class Cargo {
 
     private final String pointBCargo;
 
+    private boolean statusOnDelete;
+
     public Cargo(Integer id, Integer typeCargo,
                  Integer sizeCargo, String pointACargo,
                  String pointBCargo) {
@@ -22,6 +24,15 @@ public class Cargo {
         this.sizeCargo = sizeCargo;
         this.pointACargo = pointACargo;
         this.pointBCargo = pointBCargo;
+        this.statusOnDelete = false;
+    }
+
+    public void setStatusOnDelete(boolean statusOnDelete) {
+        this.statusOnDelete = statusOnDelete;
+    }
+
+    public boolean isStatusOnDelete() {
+        return statusOnDelete;
     }
 
     public Integer getId() {
