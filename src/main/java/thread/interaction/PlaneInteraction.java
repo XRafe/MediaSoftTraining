@@ -69,7 +69,7 @@ public class PlaneInteraction {
                     for (Integer i = 0; i < planePart.getCount(); i++) {
                         if (planePart.getName().equals(name)) {
                             if (planePart.getSize()[i] > weight) {
-                                System.out.println("Грузы был добавлен в самолёт" + plane.getNamePlane() +
+                                System.out.println("Груз был добавлен в самолёт " + plane.getNamePlane() +
                                         " в отсек: " + planePart.getName() + " номер: " + i);
                                 planePart.setSize(planePart.getSize()[i] - weight, i);
                                 System.out.println("Осталось места: " + planePart.getSize()[i]);
