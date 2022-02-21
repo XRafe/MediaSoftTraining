@@ -14,8 +14,7 @@ public class PlaneInteraction {
 
     private List<PlaneParts> planeParts;
 
-    public void addPlane(Integer id, String namePlane, String pointA,
-                         String pointB, LocalDateTime timePlane) {
+    public void addPlane(Integer id, String namePlane, String pointA, String pointB, LocalDateTime timePlane) {
         configPlane(namePlane);
         planes.add(new Plane(id, namePlane, pointA, pointB, timePlane, this.planeParts));
     }
@@ -41,6 +40,28 @@ public class PlaneInteraction {
 
     public List<Plane> getPlanes() {
         return planes;
+    }
+
+    public boolean choicePlane(Integer id, Enum type, Integer size, String A, String B) {
+        String name = "";
+        for (Plane plane : planes) {
+            if (A.equals(plane.getPointA()) & B.equals(plane.getPointB())) {
+                if (type.toString().equals("JUST")) {
+                    name = "Just";
+                } else if (type.toString().equals("ANIMAL")) {
+                    name = "Tightness";
+                } else if (type.toString().equals("DANGER")) {
+                    name = "Just";
+                } else if (type.toString().equals("FOOD")) {
+                    name = "Thermal";
+                }
+                if (checkFree(plane.getId(), size, name)) {
+                    plane.setCargoInPlane(id, type, size, A, B);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public boolean checkOtherType(Integer id, Enum type) {
@@ -69,8 +90,7 @@ public class PlaneInteraction {
                     for (Integer i = 0; i < planePart.getCount(); i++) {
                         if (planePart.getName().equals(name)) {
                             if (planePart.getSize()[i] > weight) {
-                                System.out.println("Груз был добавлен в самолёт " + plane.getNamePlane() +
-                                        " в отсек: " + planePart.getName() + " номер: " + i);
+                                System.out.println("Груз был добавлен в самолёт " + plane.getNamePlane() + " в отсек: " + planePart.getName() + " номер: " + i);
                                 planePart.setSize(planePart.getSize()[i] - weight, i);
                                 System.out.println("Осталось места: " + planePart.getSize()[i]);
                                 return true;

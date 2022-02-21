@@ -2,14 +2,18 @@ package thread;
 
 import thread.interaction.CargoInteraction;
 import thread.interaction.PlaneInteraction;
-import thread.num.TypeCargo;
 import thread.table.Cargo;
-import thread.table.Plane;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class MyThread extends Thread {
+
+    private List<Cargo> threadCargo = new ArrayList<>();
+
+    private List<Cargo> queueOnDelete = new ArrayList<>();
 
     private final CargoInteraction cargoService;
     private final PlaneInteraction planeService;
@@ -20,9 +24,16 @@ public class MyThread extends Thread {
         this.cargoService = cargoInteraction;
     }
 
+    public void choiceCargo() {
+        for (Cargo cargo : cargoService.getCargos()) {
+            if (Thread.currentThread().getName().equals(cargo.getTypeCargo().toString())) {
+                threadCargo.add(cargo);
+            }
+        }
+    }
 
     public void addNewPlain() {
-        for (Cargo cargo : cargoService.getCargos()) {
+        for (Cargo cargo : threadCargo) {
             if (!cargo.isStatusOnDelete()) {
                 Integer temp = Math.toIntExact(planeService.getPlanes().stream().count() + 1);
                 planeService.addPlane(temp, "Plane_Full", cargo.getPointACargo(),
@@ -30,80 +41,29 @@ public class MyThread extends Thread {
                 System.out.println("Добавлен самолёт");
             }
         }
-
     }
 
-
     public void run() {
-        Iterator it = cargoService.queueOnDelete.iterator();
+        Iterator it = queueOnDelete.iterator();
 
         System.out.println("Thread: " + Thread.currentThread().getName() + " started");
         try {
-            while (cargoService.getCargos().stream().count() != cargoService.queueOnDelete.stream().count()) {
-                for (Cargo cargo : cargoService.getCargos()) {
+            choiceCargo();
+            while (threadCargo.stream().count() != queueOnDelete.stream().count()) {
+                for (Cargo cargo : threadCargo) {
                     if (!cargo.isStatusOnDelete()) {
-                        for (Plane plane : planeService.getPlanes()) {
-                            if (cargo.getPointACargo().equals(plane.getPointA()) &
-                                    cargo.getPointBCargo().equals(plane.getPointB())) {
-                                if (TypeCargo.JUST.equals(cargo.getTypeCargo())) {
-                                    if (plane.getByName("Just", cargo.getSizeCargo())) {
-                                        if (planeService.checkFree(plane.getId(),
-                                                cargo.getSizeCargo(), "Just")) {
-                                            plane.setCargoInPlane(cargo.getId(), cargo.getTypeCargo(),
-                                                    cargo.getSizeCargo(), cargo.getPointACargo(),
-                                                    cargo.getPointBCargo());
-                                            cargo.setStatusOnDelete(true);
-                                            cargoService.queueOnDelete.add(cargo);
-                                            System.out.println("Товар номер: " + cargo.getId() +
-                                                    " помещен на борт: " + plane.getNamePlane());
-                                        }
-                                    }
-                                } else if (TypeCargo.ANIMAL.equals(cargo.getTypeCargo())) {
-                                    if (plane.getByName("Tightness", cargo.getSizeCargo())) {
-                                        if (planeService.checkFree(plane.getId(),
-                                                cargo.getSizeCargo(), "Tightness")) {
-
-                                            plane.setCargoInPlane(cargo.getId(), cargo.getTypeCargo(),
-                                                    cargo.getSizeCargo(), cargo.getPointACargo(),
-                                                    cargo.getPointBCargo());
-                                            cargo.setStatusOnDelete(true);
-                                            cargoService.queueOnDelete.add(cargo);
-                                            System.out.println("Товар номер: " + cargo.getId() +
-                                                    " помещен на борт: " + plane.getNamePlane());
-                                        }
-                                    }
-                                } else if (TypeCargo.DANGER.equals(cargo.getTypeCargo())) {
-                                    if (plane.getByName("Just", cargo.getSizeCargo())) {
-                                        if (planeService.checkFree(plane.getId(),
-                                                cargo.getSizeCargo(), "Just")) {
-                                            plane.setCargoInPlane(cargo.getId(), cargo.getTypeCargo(),
-                                                    cargo.getSizeCargo(), cargo.getPointACargo(),
-                                                    cargo.getPointBCargo());
-                                            cargo.setStatusOnDelete(true);
-                                            cargoService.queueOnDelete.add(cargo);
-                                            System.out.println("Товар номер: " + cargo.getId() +
-                                                    " помещен на борт: " + plane.getNamePlane());
-                                        }
-                                    }
-                                } else if (TypeCargo.FOOD.equals(cargo.getTypeCargo())) {
-                                    if (plane.getByName("Thermal", cargo.getSizeCargo())) {
-                                        if (planeService.checkFree(plane.getId(),
-                                                cargo.getSizeCargo(), "Thermal")) {
-                                            plane.setCargoInPlane(cargo.getId(), cargo.getTypeCargo(),
-                                                    cargo.getSizeCargo(), cargo.getPointACargo(),
-                                                    cargo.getPointBCargo());
-                                            cargo.setStatusOnDelete(true);
-                                            cargoService.queueOnDelete.add(cargo);
-                                            System.out.println("Товар номер: " + cargo.getId() +
-                                                    " помещен на борт: " + plane.getNamePlane());
-                                        }
-                                    }
-                                }
-                            }
+                        if (planeService.choicePlane(cargo.getId(), cargo.getTypeCargo(),
+                                cargo.getSizeCargo(), cargo.getPointACargo(),
+                                cargo.getPointBCargo())) {
+                            cargo.setStatusOnDelete(true);
+                            queueOnDelete.add(cargo);
+                            System.out.println("Товар номер: " + cargo.getId() +
+                                    " помещен на борт");
                         }
+
                     }
                 }
-                if (cargoService.getCargos().stream().count() != cargoService.queueOnDelete.stream().count()) {
+                if (cargoService.getCargos().stream().count() != queueOnDelete.stream().count()) {
                     addNewPlain();
                 }
             }

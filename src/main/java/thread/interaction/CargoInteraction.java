@@ -8,8 +8,6 @@ import java.util.List;
 public class CargoInteraction {
 
     List<Cargo> cargos = new ArrayList<>();
-    public List<Cargo> queueOnDelete = new ArrayList<>();
-
 
     public void addCargo(Integer id, Integer type, Integer sizeCargo,
                          String pointA, String pointB) {

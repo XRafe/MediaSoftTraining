@@ -55,5 +55,4 @@ public class Cargo {
         return pointBCargo;
     }
 
-
 }

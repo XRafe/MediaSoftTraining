@@ -20,7 +20,7 @@ public class MyThreadTask {
     public void init() {
         addPlane();
         addCargo();
-        actionWithCargo();
+        startThread();
     }
 
     /*
@@ -51,11 +51,11 @@ public class MyThreadTask {
                 "Санкт-Петербург", timePlane);
     }
 
-    public void actionWithCargo() {
-        MyThread justT = new MyThread("justT", cargoInteraction, planeInteraction);
-        MyThread animalT = new MyThread("animalT", cargoInteraction, planeInteraction);
-        MyThread dangerT = new MyThread("dangerT", cargoInteraction, planeInteraction);
-        MyThread foodT = new MyThread("foodT", cargoInteraction, planeInteraction);
+    public void startThread() {
+        MyThread justT = new MyThread("JUST", cargoInteraction, planeInteraction);
+        MyThread animalT = new MyThread("ANIMAL", cargoInteraction, planeInteraction);
+        MyThread dangerT = new MyThread("DANGER", cargoInteraction, planeInteraction);
+        MyThread foodT = new MyThread("FOOD", cargoInteraction, planeInteraction);
 
         animalT.setPriority(10);
         foodT.setPriority(7);
