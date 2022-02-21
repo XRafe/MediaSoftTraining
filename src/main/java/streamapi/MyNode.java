@@ -20,6 +20,14 @@ public class MyNode {
         this.prevNode = prevNode;
     }
 
+    public MyNode getNextNode() {
+        return nextNode;
+    }
+
+    public MyNode getPrevNode() {
+        return prevNode;
+    }
+
     public String getName() {
         return name;
     }

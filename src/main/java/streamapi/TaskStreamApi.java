@@ -96,18 +96,18 @@ public class TaskStreamApi {
     public void addMyNode(Integer id, String name, String descriptions) {
         myNodes.add(new MyNode(id, name, descriptions, null, null));
         for (MyNode myNode : myNodes) {
-            if (myNode.getId() == id - 1) {
+            if (myNode.getId().equals(id - 1)) {
                 for (MyNode tempMyNode : myNodes) {
-                    if (tempMyNode.getId() == id) {
+                    if (tempMyNode.getId().equals(id)) {
                         myNode.setNextNode(tempMyNode);
                     }
                 }
             }
         }
         for (MyNode myNode : myNodes) {
-            if (myNode.getId() == id) {
+            if (myNode.getId().equals(id)) {
                 for (MyNode tempMyNode : myNodes) {
-                    if (tempMyNode.getId() == id - 1) {
+                    if (tempMyNode.getId().equals(id - 1)) {
                         myNode.setPrevNode(tempMyNode);
                     }
                 }
