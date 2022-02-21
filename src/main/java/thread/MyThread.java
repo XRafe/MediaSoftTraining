@@ -22,8 +22,6 @@ public class MyThread extends Thread {
 
 
     public void addNewPlain() {
-        String[] A = new String[100];
-        String[] B = new String[100];
         for (Cargo cargo : cargoService.getCargos()) {
                 if (!cargo.isStatusOnDelete()) {
                     Integer temp = Math.toIntExact(planeService.getPlanes().stream().count() + 1);

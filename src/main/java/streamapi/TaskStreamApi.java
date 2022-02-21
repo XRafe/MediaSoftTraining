@@ -1,6 +1,5 @@
 package streamapi;
 
-
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -18,11 +17,16 @@ public class TaskStreamApi {
 
     public void init () {
         actionWithMyNode();
+        System.out.println(getMyNodes());
         filterMyNode();
         countName();
         setInMap();
         sortNode();
         outNode();
+    }
+
+    public Set<MyNode> getMyNodes() {
+        return myNodes;
     }
 
     public void actionWithMyNode() {
@@ -89,7 +93,7 @@ public class TaskStreamApi {
 
     }
 
-    public Set<MyNode> addMyNode(Integer id, String name, String descriptions) {
+    public void addMyNode(Integer id, String name, String descriptions) {
         myNodes.add(new MyNode(id, name, descriptions, null, null));
         for (MyNode myNode : myNodes) {
             if (myNode.getId() == id - 1) {
@@ -109,7 +113,6 @@ public class TaskStreamApi {
                 }
             }
         }
-        return myNodes;
     }
 
 
