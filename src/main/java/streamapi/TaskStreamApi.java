@@ -10,12 +10,11 @@ public class TaskStreamApi {
 
     private Set<MyNode> myNodes = new LinkedHashSet<>();
 
-
     public static void main(String[] args) {
         new TaskStreamApi().init();
     }
 
-    public void init() {
+    public void init () {
         actionWithMyNode();
         System.out.println(getMyNodes());
         filterMyNode();
@@ -53,7 +52,7 @@ public class TaskStreamApi {
                 .forEach(s -> System.out.println(s));
     }
 
-    public void countName() {
+    public void countName () {
         //Кол-во Name
         Map<Object, Long> countName = myNodes.stream().collect(Collectors.groupingBy(g -> g.getName(),
                 Collectors.counting()));
@@ -62,7 +61,7 @@ public class TaskStreamApi {
         }
     }
 
-    public void setInMap() {
+    public void setInMap () {
         //Из Set в Map
         Map<Integer, Object> toMap = myNodes.stream()
                 .collect(Collectors.toMap(MyNode::getId, o -> o.getName() + " " + o.getDescription()));
@@ -83,7 +82,7 @@ public class TaskStreamApi {
 
     }
 
-    public void outNode() {
+    public void outNode () {
         //Вывод нодов
         String Ent = myNodes.stream()
                 .map(m -> "<- " + m.getName() + " " + m.getDescription() + " ->")
