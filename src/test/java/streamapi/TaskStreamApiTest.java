@@ -27,14 +27,14 @@ class TaskStreamApiTest {
         taskStreamApi.addMyNode(3, "name3", "example3");
         taskStreamApi.addMyNode(4, "name4", "example4");
 
-        for (MyNode node: taskStreamApi.getMyNodes()) {
-            if (node.getNextNode()!=null) {
+        for (MyNode node : taskStreamApi.getMyNodes()) {
+            if (node.getNextNode() != null) {
                 System.out.println("Id = " + node.getId() + " nextNode connected with node:" +
                         node.getNextNode());
             } else {
                 System.out.println("Id = " + node.getId() + " nextNode value = null!");
             }
-            if (node.getPrevNode()!=null) {
+            if (node.getPrevNode() != null) {
                 System.out.println("Id = " + node.getId() + " prevNode connected with node:" +
                         node.getNextNode());
             } else {
@@ -44,7 +44,7 @@ class TaskStreamApiTest {
     }
 
     @Test
-    void getMyNodes () {
+    void getMyNodes() {
         test = taskStreamApi.getMyNodes();
         Assertions.assertEquals(test, taskStreamApi.getMyNodes());
     }

@@ -23,12 +23,12 @@ public class MyThread extends Thread {
 
     public void addNewPlain() {
         for (Cargo cargo : cargoService.getCargos()) {
-                if (!cargo.isStatusOnDelete()) {
-                    Integer temp = Math.toIntExact(planeService.getPlanes().stream().count() + 1);
-                    planeService.addPlane(temp, "Plane_Full", cargo.getPointACargo(),
-                            cargo.getPointBCargo(), LocalDateTime.now());
-                    System.out.println("Добавлен самолёт");
-                }
+            if (!cargo.isStatusOnDelete()) {
+                Integer temp = Math.toIntExact(planeService.getPlanes().stream().count() + 1);
+                planeService.addPlane(temp, "Plane_Full", cargo.getPointACargo(),
+                        cargo.getPointBCargo(), LocalDateTime.now());
+                System.out.println("Добавлен самолёт");
+            }
         }
 
     }

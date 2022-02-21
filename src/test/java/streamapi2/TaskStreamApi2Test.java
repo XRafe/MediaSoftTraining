@@ -4,12 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.*;
 
 class TaskStreamApi2Test {
 
@@ -19,6 +14,7 @@ class TaskStreamApi2Test {
 
     List<String> list = new ArrayList<>();
 
+    Map<Integer, String> map = new HashMap();
 
     @BeforeEach
     public void initTest() {
@@ -30,11 +26,17 @@ class TaskStreamApi2Test {
     void transform() {
         set.add("email-1");
         set.add("email-2");
+        set.add("email-3");
 
         list.add("email-5");
         list.add("email-6");
+        list.add("email-7");
 
-        List result = tsa.transform(list, set);
+        map.put(1, "email-8");
+        map.put(2, "email-9");
+        map.put(3, "email-10");
+
+        List result = tsa.transform(list, set, map);
         System.out.println(result);
     }
 
