@@ -72,6 +72,9 @@ public class MyThread extends Thread {
                 it.next();
             }
 
+        } catch (java.util.ConcurrentModificationException e) {
+            System.out.println("Foreach не любит изменения размера коллекции(ТутТипаОшибка), " +
+                    "в будущем пофиксим)");
         } catch (Exception e) {
             System.out.println(e);
         }

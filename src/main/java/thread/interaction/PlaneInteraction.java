@@ -1,6 +1,5 @@
 package thread.interaction;
 
-import thread.table.Cargo;
 import thread.table.Plane;
 import thread.table.PlaneParts;
 
@@ -47,11 +46,11 @@ public class PlaneInteraction {
         for (Plane plane : planes) {
             if (A.equals(plane.getPointA()) & B.equals(plane.getPointB())) {
                 if (type.toString().equals("JUST")) {
-                    name = "Just";
+                    name = checkOtherType(plane.getId(), type);
                 } else if (type.toString().equals("ANIMAL")) {
                     name = "Tightness";
                 } else if (type.toString().equals("DANGER")) {
-                    name = "Just";
+                    name = checkOtherType(plane.getId(), type);
                 } else if (type.toString().equals("FOOD")) {
                     name = "Thermal";
                 }
@@ -64,23 +63,22 @@ public class PlaneInteraction {
         return false;
     }
 
-    public boolean checkOtherType(Integer id, Enum type) {
+    public String checkOtherType(Integer id, Enum type) {
         for (Plane plane : planes) {
             if (plane.getId().equals(id)) {
                 for (PlaneParts planePart : plane.getPlaneParts()) {
-                    for (Integer i = 0; i < planePart.getCount(); i++)
+                    for (Integer i = 0; i < planePart.getCount(); i++) {
                         if (planePart.getSize()[i].equals(planePart.getCheckSize())) {
-                            for (Cargo cargo : plane.getCargoInPlane()) {
-                                if (cargo.getTypeCargo().equals(type)) {
-                                    return true;
-                                }
-                            }
+                            return planePart.getName();
+                        } else {
+                            System.out.println("Проверяем следующий отсек");
                         }
+                    }
                 }
             }
         }
         System.out.println("Нет места для добавления груза!");
-        return false;
+        return null;
     }
 
     public boolean checkFree(Integer id, Integer weight, String name) {
