@@ -1,19 +1,18 @@
 package interface_abstract;
 
-import interface_abstract.abstr.AllCar;
-import interface_abstract.interfaces.Car;
+import interface_abstract.abstr.AbstractCar;
 
 import java.util.concurrent.TimeUnit;
 
-public class SportCar extends AllCar implements Car {
+public class SportCar extends AbstractCar {
 
     private Integer timeAcceleration = 6000;
 
     @Override
     public void accelerationTurbo() throws InterruptedException {
         System.out.println("Speed: ");
-        for (Integer i=0; i<=getMaxSpeed(); i++) {
-            TimeUnit.MILLISECONDS.sleep(timeAcceleration/getMaxSpeed());
+        for (Integer i = 0; i <= getMaxSpeed(); i++) {
+            TimeUnit.MILLISECONDS.sleep(timeAcceleration / getMaxSpeed());
             if (i % 20 == 0) {
                 System.out.println(i + " km/h :: SportCar");
             }

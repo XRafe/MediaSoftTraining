@@ -1,7 +1,7 @@
 package interface_abstract;
 
-import interface_abstract.abstr.AllCar;
-import interface_abstract.interfaces.Car;
+import interface_abstract.abstr.AbstractCar;
+
 
 public class IA {
 
@@ -9,9 +9,9 @@ public class IA {
         new IA().init();
     }
 
-    private void init () {
-        Race sportCar = new Race("sportCar", new SportCar(), new SportCar());
-        Race defaultCar = new Race("defaultCar", new DefaultCar(), new DefaultCar());
+    private void init() {
+        Race sportCar = new Race("sportCar", new SportCar());
+        Race defaultCar = new Race("defaultCar", new DefaultCar());
 
         sportCar.start();
         defaultCar.start();
@@ -19,30 +19,27 @@ public class IA {
 
     private class Race extends Thread {
 
-        private AllCar allCar;
+        private AbstractCar abstractCar;
 
-        private Car car;
-
-        public Race(String name, AllCar allCar, Car car) {
+        public Race(String name, AbstractCar abstractCar) {
             super(name);
-            this.allCar = allCar;
-            this.car = car;
+            this.abstractCar = abstractCar;
         }
 
         @Override
         public void run() {
             try {
                 if (Thread.currentThread().getName().equals("sportCar")) {
-                    allCar.accelerationTurbo();
-                    System.out.println(car.right());
-                    System.out.println(car.left());
-                    System.out.println(car.stopCar() + " car: " + Thread.currentThread().getName());
+                    abstractCar.accelerationTurbo();
+                    System.out.println(abstractCar.right());
+                    System.out.println(abstractCar.left());
+                    System.out.println(abstractCar.stopCar() + " car: " + Thread.currentThread().getName());
                 }
                 if (Thread.currentThread().getName().equals("defaultCar")) {
-                    allCar.acceleration();
-                    System.out.println(car.right());
-                    System.out.println(car.left());
-                    System.out.println(car.stopCar() + " car: " + Thread.currentThread().getName());
+                    abstractCar.acceleration();
+                    System.out.println(abstractCar.right());
+                    System.out.println(abstractCar.left());
+                    System.out.println(abstractCar.stopCar() + " car: " + Thread.currentThread().getName());
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();

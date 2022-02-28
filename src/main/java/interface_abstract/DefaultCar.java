@@ -1,11 +1,10 @@
 package interface_abstract;
 
-import interface_abstract.abstr.AllCar;
-import interface_abstract.interfaces.Car;
+import interface_abstract.abstr.AbstractCar;
 
 import java.util.concurrent.TimeUnit;
 
-public class DefaultCar extends AllCar implements Car {
+public class DefaultCar extends AbstractCar {
 
     private Integer timeAcceleration = 16000;
 
@@ -15,8 +14,8 @@ public class DefaultCar extends AllCar implements Car {
     @Override
     public void acceleration() throws InterruptedException {
         System.out.println("Speed: ");
-        for (Integer i=0; i<=getMaxSpeed(); i++) {
-            TimeUnit.MILLISECONDS.sleep(timeAcceleration/getMaxSpeed());
+        for (Integer i = 0; i <= getMaxSpeed(); i++) {
+            TimeUnit.MILLISECONDS.sleep(timeAcceleration / getMaxSpeed());
             if (i % 20 == 0) {
                 System.out.println(i + " km/h :: DefCar");
             }
