@@ -16,7 +16,7 @@ public class Ex {
             x3 = x1 / x2;
             System.out.println(x3);
 
-        } catch (NullException e) {
+        } catch (Exception e) {
             System.out.println(e);
         } finally {
             System.out.println("finally complete");
