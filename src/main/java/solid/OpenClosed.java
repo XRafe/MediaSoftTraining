@@ -16,6 +16,7 @@ public class OpenClosed {
     public class ActionBirds {
         public String message = "";
 
+
         public ActionBirds(String message) {
             this.message = message;
         }
